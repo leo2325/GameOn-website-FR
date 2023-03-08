@@ -35,3 +35,36 @@ function closeModal() {
 
 
 
+// 2 - TODO : IMPLEMENTER ENTREES DU FORMULAIRE
+// Constante champs du prénom.
+
+let formDataError = document.querySelectorAll(".formData[data-error]::after");
+let userFirstName = document.getElementById("firstName").value;
+
+function testFirstName() { 
+  if( userFirstName.length <= 2 ) {
+    document.userFirstName.setAttribute("data-error", message);
+    element.parentElement.setAttribute(“data-error-visible”, true);
+  } else {
+    element.parentElement.removeAttribute("data-error");
+  }
+};
+
+userFirstName.addEventListener('change', function(e) {
+  testFirstName();
+});
+// EventListener Prénom contenant les conditions à remplir pour le formulaire.
+//userFirstName.addEventListener('change', function(e) {});
+
+
+
+function validate() {
+  var email = document.getElementById("email");
+
+  if (checkEmail(email)) {
+      alert('Adresse e-mail valide');
+  } else {
+      alert('Adresse e-mail non valide');
+  }
+  return false;
+}

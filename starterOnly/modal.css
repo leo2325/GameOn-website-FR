@@ -216,7 +216,7 @@ input {
   margin: 7px;
   text-align: left;
   line-height: 0.3;
-  opacity: 0;
+  opacity: 1;
   transition: 0.3s;
 }
 .formData[data-error-visible="true"]::after {
