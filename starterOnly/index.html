@@ -51,11 +51,8 @@
           <span class="close"></span>
             
           <div class="modal-body">
-
             <form name="reserve" action="index.html" method="get" onsubmit="return validate();">
-              
-              <fieldset>
-                <!--<legend>Identité</legend>-->
+              <fieldset class="fieldsetForm">
                 <div class="formData">
                   <label for="firstName">Prénom</label>
                   <input class="text-control" type="text" id="firstName" name="firstName" minlength="2"/>
@@ -77,10 +74,7 @@
                   <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
                 </div>
               </fieldset>
-
-
-              <fieldset>
-                <!--<legend>Questionnaire</legend>-->
+              <fieldset class="fieldsetForm">
                 <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
                 <div class="formData">
                   <input class="checkbox-input" type="radio" id="location1" name="location" value="New York"/>
@@ -108,23 +102,20 @@
                   <span class="checkbox-icon"></span>Portland</label>
                 </div>
               </fieldset>
-
-
-              <fieldset>
-                <!--<legend>Questionnaire</legend>-->
+              <fieldset class="fieldsetForm">
                 <div class="formData">
-                  
-                  <input class="checkbox-input" type="checkbox" id="checkbox1" checked/>
+                  <input class="checkbox-input" type="checkbox" id="checkbox1" />
                   <label class="checkbox2-label" for="checkbox1" required><span class="checkbox-icon"></span>J'ai lu et accepté les conditions d'utilisation.</label>
-               
                   <input class="checkbox-input" type="checkbox" id="checkbox2" />
                   <label class="checkbox2-label" for="checkbox2"><span class="checkbox-icon"></span>Je souhaite être prévenu des prochains évènements.</label>
-                
                 </div>
               </fieldset>
-
-              <input class="btn-submit" type="submit" class="button" value="C'est parti"/>
-
+              <fieldset id="fieldsetValidate">
+                <div id="validateContentBox">
+                  <p>Merci pour votre inscription</p>
+                </div>
+              </fieldset>
+              <input class="btn-submit" id="btnsubmit" type="submit" class="button" value="C'est parti"/>
             </form>
           </div>
         </div>

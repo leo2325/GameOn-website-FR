@@ -169,6 +169,25 @@ main {
   background-color: rgba(26, 39, 156, 0.4);
 }
 
+fieldset {
+  border: none;
+}
+.fieldsetForm {
+  visibility: visible;
+}
+#fieldsetValidate {
+  display: none;
+  width: 325px;
+  position: absolute;
+  top: 42%;
+  right:18%;
+  font-size: 1.6em;
+  text-align: center;
+}
+#fieldsetValidate p{
+  margin: 0 auto;
+}
+
 .content {
   margin: 5% auto;
   width: 100%;
@@ -207,6 +226,7 @@ input {
   border-radius: 8px;
   font-size: 20px;
   height: 48px;
+  direction: ltr;
 }
 .formData[data-error]::after {
   content: attr(data-error);
