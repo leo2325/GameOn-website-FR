@@ -109,23 +109,13 @@ userEmail.addEventListener('change', function(e) {
   checkEmail();
 });
 
-
-
-
-
-
-
-
-
-
-
-/* OPTIONNEL / CHECKER LE FORMAT DE LA DATE DE NAISSANCE
-// A CORRIGER
+// OPTIONNEL / CHECKER LE FORMAT DE LA DATE DE NAISSANCE
 // Constante champs de date de naissance.
 let birthDate= document.getElementById("birthdate");
+
 // Fonction de test type date de naissance.
 function checkbirthDate() {
-  var regexBirthDate = /^[0-3]{1}[0-9]{1}[\/]{1}[0|1]{1}[0-9]{1}[\/]{1}[1-2]{1}[0|1|9]{1}[0-9]{2}$/;
+  var regexBirthDate = /^[1-2]{1}[0|1|9]{1}[0-9]{2}[\-]{1}[0|1]{1}[0-9]{1}[\-]{1}[0-3]{1}[0-9]{1}$/;
   if( regexBirthDate.test(birthDate.value) == false ) {
     birthDate.parentElement.setAttribute("data-error", "Veuillez entrer votre date de naissance correctement");
     birthDate.parentElement.setAttribute("data-error-visible", true);
@@ -142,18 +132,6 @@ function checkbirthDate() {
 birthDate.addEventListener('change', function(e) {
   checkbirthDate();
 });
-*/
-
-
-
-
-
-
-
-
-
-
-
 
 // POUR LE NOMBRE DE CONCOURS UNE VALEUR NUMERIQUE EST SAISIE
 // Constante champs de quantité de tournoi.
@@ -176,7 +154,6 @@ function testQuantity() {
 quantity.addEventListener('change', function(e) {
   testQuantity();
 });
-
 
 //UN BOUTON RADIO EST SELECTIONNE
 // Constantes des locations.
@@ -232,7 +209,7 @@ acceptConditions.addEventListener('change', function(e) {
 
 
 
-// CONSERVER LES DONNEES DU FORMULAIRE (NE PAS EFFACER LE FORMULAIRE) LORSQU'IL NE PASSE PAS LA VLAIDATION
+// CONSERVER LES DONNEES DU FORMULAIRE (NE PAS EFFACER LE FORMULAIRE) LORSQU'IL NE PASSE PAS LA VALIDATION
 
 
 
@@ -247,7 +224,7 @@ acceptConditions.addEventListener('change', function(e) {
 
 function validate() {
   // CORRIGER verifier au debut du validate la valeur du bouton
-  if( testFirstName() && testLastName() && checkEmail() && testQuantity() && getLocation() && checkConditions() ){ 
+  if( testFirstName() && testLastName() && checkEmail() && testQuantity() && getLocation() && checkConditions() && fieldsetBtn.value == "C'est parti"){ 
   // disparition du formulaire et apparition du message de validation
     fieldsetForm.classList.add("visiHidden");  
     fieldsetValidate.classList.remove("fieldsetValidateNotVisible");  
