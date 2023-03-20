@@ -10,12 +10,10 @@ function editNav() {
 // DOM Elements
 // Constante bouton ouverture formulaire - "je m'inscris".
 const modalBtn = document.querySelectorAll(".modal-btn");
-
-
-
-// OUVERTURE DU FORMULAIRE 
 // Constante formulaire.
 const modalbg = document.querySelector(".bground");
+
+// OUVERTURE DU FORMULAIRE 
 // launch modal form - fonction d'ouverture du formulaire
 function launchModal() { 
   modalbg.style.display = "block";
@@ -58,10 +56,6 @@ function testFirstName() {
     userFirstName.parentElement.removeAttribute("data-error");
     userFirstName.parentElement.removeAttribute("data-error-visible", true);
     console.log("prénom TRUE");
-    // disparition du formulaire
-  document.fieldsetForm.removeAttribute("visibility","hidden");  
-// apparition du message de validation
-  fieldsetValidate.display = "block";
     //return true;
   }
 };
@@ -125,14 +119,14 @@ userEmail.addEventListener('change', function(e) {
 
 
 
-// OPTIONNEL / CHECKER LE FORMAT DE LA DATE DE NAISSANCE
+/* OPTIONNEL / CHECKER LE FORMAT DE LA DATE DE NAISSANCE
 // A CORRIGER
 // Constante champs de date de naissance.
 let birthDate= document.getElementById("birthdate");
 // Fonction de test type date de naissance.
 function checkbirthDate() {
   var regexBirthDate = /^[0-3]{1}[0-9]{1}[\/]{1}[0|1]{1}[0-9]{1}[\/]{1}[1-2]{1}[0|1|9]{1}[0-9]{2}$/;
-  if(regexBirthDate.test(birthDate.value) == false ) {
+  if( regexBirthDate.test(birthDate.value) == false ) {
     birthDate.parentElement.setAttribute("data-error", "Veuillez entrer votre date de naissance correctement");
     birthDate.parentElement.setAttribute("data-error-visible", true);
     console.log("birthdate FALSE");
@@ -148,6 +142,7 @@ function checkbirthDate() {
 birthDate.addEventListener('change', function(e) {
   checkbirthDate();
 });
+*/
 
 
 
@@ -169,12 +164,12 @@ function testQuantity() {
     quantity.parentElement.setAttribute("data-error", "Veuillez entrer une quantité");
     quantity.parentElement.setAttribute("data-error-visible", true);
     console.log("quantity FALSE");
-    return false;
+    //return false;
   } else {
     quantity.parentElement.removeAttribute("data-error");
     quantity.parentElement.removeAttribute("data-error-visible", true);
     console.log("quantity TRUE");
-    return true;
+    //return true;
   }
 };
 // EventListener quantité de tournoi.
@@ -183,51 +178,33 @@ quantity.addEventListener('change', function(e) {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-// UN BOUTON RADIO EST SELECTIONNE
+//UN BOUTON RADIO EST SELECTIONNE
 // Constantes des locations.
 let location1 = document.getElementById("location1");
 let location2 = document.getElementById("location2");
 let location3 = document.getElementById("location3");
 let location4 = document.getElementById("location4");
-let location5 = document.getElementById("location2");
+let location5 = document.getElementById("location5");
 let location6 = document.getElementById("location6");
-
+let formDataLocation = document.getElementById("formDataLocation");
 function getLocation() {
-  if( location1.checked == false ){
-
+  if( location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked){
+    formDataLocation.removeAttribute("data-error");
+    formDataLocation.removeAttribute("data-error-visible", true);
+    console.log("location checked TRUE");
+    //return true;
   }
-  else if( location1.checked == false ){
-
+  else{
+    formDataLocation .setAttribute("data-error", "Veuillez entrer une quantité");
+    formDataLocation .setAttribute("data-error-visible", true);
+    console.log("quantity FALSE");
+    //return false;
   }
-  else if( location1.checked == false ){
-
-  }
-  else if( location1.checked == false ){
-
-  }
-  else if( location1.checked == false ){
-
-  }
-  else if( location1.checked == false ){
-
-  }
-  else {
-
-  }
-}
-
-
-
+};
+// EventListener quantité de tournoi.
+formDataLocation.addEventListener('change', function(e) {
+  getLocation();
+});
 
 
 // LA CASE DES CONDITIONS GENERALES EST COCHEE, L'AUTRE CASE EST FACULTATIVE / PEUT ETRE LAISSEE DECOCHEE
@@ -243,22 +220,15 @@ function checkConditions() {
     acceptConditions.parentElement.removeAttribute("data-error", "Veuillez accepter les conditions");
     acceptConditions.parentElement.removeAttribute("data-error-visible", true);
     console.log("conditions générales TRUE")
+    // disparition du formulaire et apparition du message de validation
+    fieldsetForm.classList.toggle("visiHidden");  
+    fieldsetValidate.classList.toggle("fieldsetValidateNotVisible");  
   }
 }
 // EventListener checkbox conditions.
 acceptConditions.addEventListener('change', function(e) {
   checkConditions();
 });
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -273,5 +243,24 @@ acceptConditions.addEventListener('change', function(e) {
 
 
 
+// Fonction de validation
+
+function validate() {
+  // CORRIGER verifier au debut du validate la valeur du bouton
+  if( testFirstName() && testLastName() && checkEmail() && testQuantity() && getLocation() && checkConditions() ){ 
+  // disparition du formulaire et apparition du message de validation
+    fieldsetForm.classList.add("visiHidden");  
+    fieldsetValidate.classList.remove("fieldsetValidateNotVisible");  
+  // changement de texte du bouton
+    fieldsetBtn.setAttribute("value", "terminer");
+  }
+  else {
+  }  
+};
+// EventListener checkbox conditions.
+fieldsetBtn.addEventListener('click', function(e) {
+  validate();
+});
 
 
+//reinitialiser le formulaire lorsqu'il est validé

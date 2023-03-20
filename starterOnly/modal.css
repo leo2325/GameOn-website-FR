@@ -172,17 +172,21 @@ main {
 fieldset {
   border: none;
 }
-.fieldsetForm {
-  visibility: visible;
+.visiHidden {
+  visibility: hidden;
 }
 #fieldsetValidate {
-  display: none;
   width: 325px;
   position: absolute;
   top: 42%;
   right:18%;
   font-size: 1.6em;
   text-align: center;
+  z-index: 0;
+  display:none;
+}
+#fieldsetValidateNotVisible{
+  display:none;
 }
 #fieldsetValidate p{
   margin: 0 auto;
