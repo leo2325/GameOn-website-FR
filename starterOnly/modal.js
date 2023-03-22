@@ -1,3 +1,6 @@
+
+
+
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -21,7 +24,6 @@ function launchModal() {
 /* launchModal event */
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-
 // 1 - TODO : FERMER LA MODALE
 // Constante bouton fermeture formulaire.
 const closeBtn = document.querySelectorAll(".close");
@@ -37,10 +39,7 @@ closeBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 // 3 - AJOUTER VALIDATION OU MESSAGE D'ERREUR
 // Constante div contenant chaque champs formulaire.
 const formData = document.querySelectorAll(".formData");
-// Déclaration des variables
-let fieldsetForm = document.getElementsByClassName("fieldsetForm");
-let fieldsetValidate = document.getElementById("fieldsetValidate");
-let fieldsetBtn = document.getElementById("btnsubmit");
+
 
 // LE CHAMP PRENOM A UN MINIMUM DE 2 CARACTERES / N'EST PAS VIDE.
 // Constante champs du prénom.
@@ -197,9 +196,6 @@ function checkConditions() {
     acceptConditions.parentElement.removeAttribute("data-error", "Veuillez accepter les conditions");
     acceptConditions.parentElement.removeAttribute("data-error-visible", true);
     console.log("conditions générales TRUE")
-    // disparition du formulaire et apparition du message de validation
-    fieldsetForm.classList.toggle("visiHidden");  
-    fieldsetValidate.classList.toggle("fieldsetValidateNotVisible");  
   }
 }
 // EventListener checkbox conditions.
@@ -210,7 +206,10 @@ acceptConditions.addEventListener('change', function(e) {
 
 
 // CONSERVER LES DONNEES DU FORMULAIRE (NE PAS EFFACER LE FORMULAIRE) LORSQU'IL NE PASSE PAS LA VALIDATION
-
+const form = document.querySelector('form');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+})
 
 
 
@@ -221,17 +220,31 @@ acceptConditions.addEventListener('change', function(e) {
 
 
 // Fonction de validation
+// Déclaration des variables
+let fieldsetForm = document.getElementsByClassName("fieldsetForm");
+let fieldsetValidate = document.getElementById("fieldsetValidate");
+let fieldsetBtn = document.getElementById("btnsubmit");
 
 function validate() {
   // CORRIGER verifier au debut du validate la valeur du bouton
-  if( testFirstName() && testLastName() && checkEmail() && testQuantity() && getLocation() && checkConditions() && fieldsetBtn.value == "C'est parti"){ 
-  // disparition du formulaire et apparition du message de validation
-    fieldsetForm.classList.add("visiHidden");  
-    fieldsetValidate.classList.remove("fieldsetValidateNotVisible");  
-  // changement de texte du bouton
-    fieldsetBtn.setAttribute("value", "terminer");
-  }
-  else {
+  if( testFirstName() 
+      & testLastName() 
+      & checkEmail() 
+      & testQuantity() 
+      & getLocation() 
+      & checkConditions() 
+      & fieldsetBtn.value == "C'est parti"
+    ) { 
+    // disparition du formulaire et apparition du message de validation
+      fieldsetForm.classList.add("visiHidden");  
+      fieldsetValidate.classList.remove("fieldsetValidateNotVisible");  
+    // changement de texte du bouton
+      fieldsetBtn.setAttribute("value", "terminer");
+    }
+    else if( fieldsetBtn.value == "terminer" ){
+      // fermer la fenêtre de formulaire
+    }
+    else {
   }  
 };
 // EventListener checkbox conditions.
