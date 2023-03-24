@@ -47,15 +47,13 @@ let userFirstName = document.getElementById("firstName");
 // Fonction de test du prénom
 function testFirstName() { 
   if( userFirstName.value.length <= 2 ) {
-    userFirstName.parentElement.setAttribute("data-error", "Veuillez entrer plus de 2 caractères");
+    userFirstName.parentElement.setAttribute("data-error", "Veuillez entrer 2 caractères ou plus pour le champ du prénom.");
     userFirstName.parentElement.setAttribute("data-error-visible", true);
-    console.log("prénom FALSE");
-    //return false;
+    return false;
   } else {
     userFirstName.parentElement.removeAttribute("data-error");
     userFirstName.parentElement.removeAttribute("data-error-visible", true);
-    console.log("prénom TRUE");
-    //return true;
+    return true;
   }
 };
 // EventListener Prénom .
@@ -69,15 +67,13 @@ let userLastName = document.getElementById("lastName");
 // Fonction de test du nom
 function testLastName() { 
   if( userLastName.value.length <= 2 ) {
-    userLastName.parentElement.setAttribute("data-error", "Veuillez entrer plus de 2 caractères");
+    userLastName.parentElement.setAttribute("data-error", "Veuillez entrer 2 caractères ou plus pour le champ du nom.");
     userLastName.parentElement.setAttribute("data-error-visible", true);
-    console.log("nom FALSE");
-    //return false;
+    return false;
   } else {
     userLastName.parentElement.removeAttribute("data-error");
     userLastName.parentElement.removeAttribute("data-error-visible", true);
-    console.log("nom TRUE");
-    //return true;
+    return true;
   }
 };
 // EventListener nom .
@@ -94,13 +90,11 @@ function checkEmail() {
   if(re.test(userEmail.value) == false) {
     userEmail.parentElement.setAttribute("data-error", "Veuillez entrer votre email correctement");
     userEmail.parentElement.setAttribute("data-error-visible", true);
-    console.log("mail FALSE");
-    //return false;
+    return false;
   } else {
     userEmail.parentElement.removeAttribute("data-error");
     userEmail.parentElement.removeAttribute("data-error-visible", true);
-    console.log("mail TRUE");
-    //return true;
+    return true;
   }
 };
 // EventListener mail.
@@ -116,14 +110,12 @@ let birthDate= document.getElementById("birthdate");
 function checkbirthDate() {
   var regexBirthDate = /^[1-2]{1}[0|1|9]{1}[0-9]{2}[\-]{1}[0|1]{1}[0-9]{1}[\-]{1}[0-3]{1}[0-9]{1}$/;
   if( regexBirthDate.test(birthDate.value) == false ) {
-    birthDate.parentElement.setAttribute("data-error", "Veuillez entrer votre date de naissance correctement");
+    birthDate.parentElement.setAttribute("data-error", "Vous devez entrer  votre date de naissance.");
     birthDate.parentElement.setAttribute("data-error-visible", true);
-    console.log("birthdate FALSE");
     return false;
   } else {
     birthDate.parentElement.removeAttribute("data-error");
     birthDate.parentElement.removeAttribute("data-error-visible", true);
-    console.log("birthdate TRUE");
     return true;
   }
 };
@@ -140,13 +132,11 @@ function testQuantity() {
   if( quantity.value == "") {
     quantity.parentElement.setAttribute("data-error", "Veuillez entrer une quantité");
     quantity.parentElement.setAttribute("data-error-visible", true);
-    console.log("quantity FALSE");
-    //return false;
+    return false;
   } else {
     quantity.parentElement.removeAttribute("data-error");
     quantity.parentElement.removeAttribute("data-error-visible", true);
-    console.log("quantity TRUE");
-    //return true;
+    return true;
   }
 };
 // EventListener quantité de tournoi.
@@ -167,14 +157,12 @@ function getLocation() {
   if( location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked){
     formDataLocation.removeAttribute("data-error");
     formDataLocation.removeAttribute("data-error-visible", true);
-    console.log("location checked TRUE");
-    //return true;
+    return true;
   }
   else{
-    formDataLocation .setAttribute("data-error", "Veuillez entrer une quantité");
+    formDataLocation .setAttribute("data-error", "Vous devez choisir une option.");
     formDataLocation .setAttribute("data-error-visible", true);
-    console.log("quantity FALSE");
-    //return false;
+    return false;
   }
 };
 // EventListener quantité de tournoi.
@@ -182,42 +170,32 @@ formDataLocation.addEventListener('change', function(e) {
   getLocation();
 });
 
-
 // LA CASE DES CONDITIONS GENERALES EST COCHEE, L'AUTRE CASE EST FACULTATIVE / PEUT ETRE LAISSEE DECOCHEE
 // Constante checkbox conditions.
 let acceptConditions = document.getElementById("checkbox1");
 function checkConditions() {
   if( acceptConditions.checked == false ) {
-    acceptConditions.parentElement.setAttribute("data-error", "Veuillez accepter les conditions");
+    acceptConditions.parentElement.setAttribute("data-error", "Vous devez vérifer que vous acceptez les termes et conditions.");
     acceptConditions.parentElement.setAttribute("data-error-visible", true);
-    console.log("conditions générales FALSE")
+    return false;
   }
   else {
     acceptConditions.parentElement.removeAttribute("data-error", "Veuillez accepter les conditions");
     acceptConditions.parentElement.removeAttribute("data-error-visible", true);
-    console.log("conditions générales TRUE")
+    return true;
   }
 }
 // EventListener checkbox conditions.
 acceptConditions.addEventListener('change', function(e) {
   checkConditions();
+  
 });
-
-
 
 // CONSERVER LES DONNEES DU FORMULAIRE (NE PAS EFFACER LE FORMULAIRE) LORSQU'IL NE PASSE PAS LA VALIDATION
 const form = document.querySelector('form');
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 })
-
-
-
-
-
-
-
-
 
 // Fonction de validation
 // Déclaration des variables
@@ -236,21 +214,19 @@ function validate() {
       & fieldsetBtn.value == "C'est parti"
     ) { 
     // disparition du formulaire et apparition du message de validation
-      fieldsetForm.classList.add("visiHidden");  
+    for (const i in fieldsetForm) {
+      if (Object.hasOwnProperty.call(fieldsetForm, i)) {
+        const element = fieldsetForm[i];
+        element.classList.add("visiHidden");
+      }
+    }
       fieldsetValidate.classList.remove("fieldsetValidateNotVisible");  
     // changement de texte du bouton
-      fieldsetBtn.setAttribute("value", "terminer");
+      fieldsetBtn.setAttribute("value", "Terminer");
     }
-    else if( fieldsetBtn.value == "terminer" ){
-      // fermer la fenêtre de formulaire
+    else if( fieldsetBtn.value == "Terminer"){
+      closeModal();
     }
     else {
   }  
 };
-// EventListener checkbox conditions.
-fieldsetBtn.addEventListener('click', function(e) {
-  validate();
-});
-
-
-//reinitialiser le formulaire lorsqu'il est validé
