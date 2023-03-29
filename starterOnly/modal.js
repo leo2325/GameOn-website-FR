@@ -227,6 +227,4 @@ function validate() {
     else if( fieldsetBtn.value == "Terminer"){
       closeModal();
     }
-    else {
-  }  
 };
